@@ -180,9 +180,9 @@ void square_in_circle()
 
 void infinity()
 {
-  move(255, 0, 0, 155, 40000); //fM1_speed, fM2_speed, rM1_speed, rM2_speed, time1
+  move(255, 0, 0, 200, 30000); //fM1_speed, fM2_speed, rM1_speed, rM2_speed, time1
   delay(1000);
-  move(0, 255, 155, 0, 40000);
+  move(0, 255, 200, 0, 30000);
 }
 
 
@@ -201,6 +201,7 @@ void loop()
    if(analogRead(button2) != 0)
    {
     infinity();
+    stop();
    }
    if(analogRead(button3) != 0)
    {
