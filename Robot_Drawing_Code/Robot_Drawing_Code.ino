@@ -6,6 +6,8 @@ int motor1E = 7;
 int motor2E = 3;
 int delayTime = 3000;
 int button1 = A0;
+int button2 = A3;
+int button3 = A6;
 
 //5, 6, 9, 10
 
@@ -151,12 +153,9 @@ void swirl(float mul, float time1)// Multiplyer changes distance between rings, 
     analogWrite(motor2R, num);
     delay(incr);
   }
-   while(1==1)
-  {
-    stop();
+
     Serial.print("Done\n");
     delay(10000);
-  }
 }
 
 
@@ -183,10 +182,25 @@ void square_in_circle()
 
 void loop() 
 {
-  if(button1 == HIGH)
-   swirl(.8, 120000);\
-  else 
-    stop();
-   square_in_circle();
+   Serial.print(analogRead(button1));
+   Serial.print("\t");
+   Serial.print(analogRead(button2));
+   Serial.print("\t");
+   Serial.println(analogRead(button3));
+   if(analogRead(button1) != 0)
+   {
+      swirl(.8, 12000);
+      stop();
+   }
+   if(analogRead(button2) != 0)
+   {
+    
+   }
+   if(analogRead(button3) != 0)
+   {
+    
+   }
+   stop();
+   
   
 }
