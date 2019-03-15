@@ -1,10 +1,11 @@
 int motor1F = 6;
 int motor1R = 5;
-int motor2F = 9; //2 changed to 9
-int motor2R = 10; //4 changed to 10
+int motor2F = 9; 
+int motor2R = 10; 
 int motor1E = 7;
 int motor2E = 3;
 int delayTime = 3000;
+int button1 = A0;
 
 //5, 6, 9, 10
 
@@ -16,6 +17,7 @@ void setup()
   pinMode(motor2R, OUTPUT);
   pinMode(motor1E, OUTPUT);
   pinMode(motor2E, OUTPUT);
+  pinMode(button1, INPUT);
   randomSeed(analogRead(0));
   Serial.begin(9600);
 }
@@ -127,8 +129,8 @@ void circle()
   move(255, 0, 0, 150, 35000); 
 }
 
-void swirl(float mul, float time1)// mul:  0.0 to 1.0
-{
+void swirl(float mul, float time1)// Multiplyer changes distance between rings, Time1 changes time.
+{//Good swirl value: .8, 120000
   float i;
   float num;
   float num2;
@@ -149,20 +151,41 @@ void swirl(float mul, float time1)// mul:  0.0 to 1.0
     analogWrite(motor2R, num);
     delay(incr);
   }
-  
-
-  while(1==1)
+   while(1==1)
   {
     stop();
     Serial.print("Done\n");
     delay(10000);
   }
 }
+
+
+
+
+void square_in_circle()
+{
+  int time = 4000;
+  int speed = 255;
+  int i, j;
+  
+  for(j = 0; i < 8; j++)
+  {  for(i = 0; i < 4; i++)
+    {
+      goF(speed, 2000);
+      turnR(speed, 6500);
+    }
+    turnL(speed, 3500);
+  }
+}
+  
+
+
+
 void loop() 
 {
-  swirl(1.5, 600000);
-  while(1 == 1)
-  {
+  if(button1 == HIGH)
+   swirl(.8, 120000);
+  else 
     stop();
-  }
+  
 }
