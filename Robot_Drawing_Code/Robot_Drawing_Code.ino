@@ -200,7 +200,7 @@ void loop()
    }
    if(analogRead(button2) != 0)
    {
-    
+    infinity();
    }
    if(analogRead(button3) != 0)
    {
