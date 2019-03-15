@@ -178,6 +178,12 @@ void square_in_circle()
 }
   
 
+void infinity()
+{
+  move(200, 0, 0, 100, 20000); //fM1_speed, fM2_speed, rM1_speed, rM2_speed, time1
+  delay(1000);
+  move(0, 200, 100, 0, 20000);
+}
 
 
 void loop() 
