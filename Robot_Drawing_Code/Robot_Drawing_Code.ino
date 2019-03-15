@@ -184,8 +184,9 @@ void square_in_circle()
 void loop() 
 {
   if(button1 == HIGH)
-   swirl(.8, 120000);
+   swirl(.8, 120000);\
   else 
     stop();
+   square_in_circle();
   
 }
