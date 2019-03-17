@@ -79,9 +79,6 @@ void turnR(int speed, int time) //Turn Right, speed(0 - 255), time(Seconds)
   
 }
 
-
-
-
 void move(int fM1_speed, int fM2_speed, int rM1_speed, int rM2_speed, int time1)
 {
   digitalWrite(motor1E, HIGH);
@@ -95,40 +92,6 @@ void move(int fM1_speed, int fM2_speed, int rM1_speed, int rM2_speed, int time1)
   delay(time1);
   stop();
 
-}
-
-void square()
-{
-  int time = 4000;
-  int speed = 255;
-  int i;
-  for(i = 0; i < 4; i++)
-  {
-    goF(speed, 2000);
-    turnR(speed, 6500);
-    
-  }
- 
-}
-
-void diagnol1()
-{
-  int time = 4000;
-  int speed = 255;
-  int i;
-  for(i = 0; i < 20; i++)
-  {
-    goF(speed, 2000);
-    turnR(speed, 7000);
-    
-  }
- 
-}
-
-
-void circle()
-{
-  move(255, 0, 0, 150, 35000); 
 }
 
 void swirl(float mul, float time1)// Multiplyer changes distance between rings, Time1 changes time.
@@ -158,33 +121,49 @@ void swirl(float mul, float time1)// Multiplyer changes distance between rings, 
     delay(10000);
 }
 
-
-
-
-void square_in_circle()
-{
-  int time = 4000;
-  int speed = 255;
-  int i, j;
   
-  for(j = 0; i < 8; j++)
-  {  for(i = 0; i < 4; i++)
-    {
-      goF(speed, 2000);
-      turnR(speed, 6500);
-    }
-    turnL(speed, 3500);
-  }
-}
-  
-
 void infinity()
-{
-  move(255, 0, 0, 200, 30000); //fM1_speed, fM2_speed, rM1_speed, rM2_speed, time1
+{ int switch_speed = 150;
+  
+  move(255, 0, 0, switch_speed, 30000); //fM1_speed, fM2_speed, rM1_speed, rM2_speed, time1
   delay(1000);
-  move(0, 255, 200, 0, 30000);
+  move(0, 255, switch_speed, 0, 30000);
 }
 
+void scu()
+{ 
+  int S_time = 12750;
+  
+  int C_time = 14750;
+  
+  int U_time1 = 6000;
+  int U_time2 = 1700;
+  int U_time3 = 13500;
+  
+  //Drawing the S
+  goF(255, 500);
+  move(0, 255, 190, 0, S_time);
+  move(255, 0, 0, 190 , S_time);
+  goF(255, 1500);
+
+
+  goF(255, 200);
+  goB(255, 200);
+  //Drawing the C
+   move(0, 150, 255, 0 , C_time/2);
+   goB(255, 100);
+   move(0, 150, 255, 0 , C_time/2);
+   goB(255, 400);
+  
+  //Drawing the U
+   move(0, 230, 255, 0 , U_time1);
+   goB(255, U_time2);
+   goF(255, U_time2-350);
+   move(0, 255, 170, 0, U_time3);
+   goF(255, U_time2-350);
+   goB(255, U_time2 + 100);
+    
+}
 
 void loop() 
 {
@@ -195,7 +174,7 @@ void loop()
    Serial.println(analogRead(button3));
    if(analogRead(button1) != 0)
    {
-      swirl(.8, 12000);
+      swirl(.8, 120000);
       stop();
    }
    if(analogRead(button2) != 0)
@@ -205,7 +184,7 @@ void loop()
    }
    if(analogRead(button3) != 0)
    {
-    
+    scu();
    }
    stop();
    
