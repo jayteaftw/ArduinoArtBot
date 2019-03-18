@@ -167,11 +167,7 @@ void scu()
 
 void loop() 
 {
-   Serial.print(analogRead(button1));
-   Serial.print("\t");
-   Serial.print(analogRead(button2));
-   Serial.print("\t");
-   Serial.println(analogRead(button3));
+  
    if(analogRead(button1) != 0)
    {
       swirl(.8, 120000);
